@@ -1,0 +1,50 @@
+{
+  "name": "webdagbok",
+  "version": "1.0.0",
+  "description": "SSB Webdagbok Forbrukerundersokelsen",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint app --ext .js --ext .jsx",
+    "deploy": "node ./lib/deploy.js",
+    "stats": "webpack --profile --json > stats.json",
+    "build": "npm run clean && webpack",
+    "start": "webpack-dev-server"
+  },
+  "author": "Dervis M",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^5.4.7",
+    "babel-eslint": "^4.1.6",
+    "babel-loader": "^5.1.2",
+    "babel-plugin-react-transform": "^1.1.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "css-loader": "^0.23.0",
+    "eslint": "^1.10.1",
+    "eslint-loader": "^1.1.1",
+    "eslint-plugin-react": "^3.10.0",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "file-loader": "^0.8.5",
+    "gh-pages": "^0.5.0",
+    "lodash": "^3.10.1",
+    "node-sass": "^3.4.2",
+    "open-browser-webpack-plugin": "0.0.1",
+    "react-hot-loader": "^1.3.0",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.2.0",
+    "rimraf": "^2.4.4",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0",
+    "webpack-merge": "^0.3.2",
+    "history": "^1.13.1"
+  },
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.0"
+  }
+}
