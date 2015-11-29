@@ -1,7 +1,7 @@
 {
   "name": "webdagbok",
   "version": "1.0.0",
-  "description": "SSB Webdagbok Forbrukerundersokelsen",
+  "description": "Webpack and React Starter project",
   "main": "index.js",
   "private": true,
   "scripts": {
