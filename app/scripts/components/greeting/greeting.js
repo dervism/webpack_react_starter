@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './greeting.scss'
 
 export default class Greeting extends Component {
     constructor(props) {

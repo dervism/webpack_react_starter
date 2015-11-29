@@ -32,12 +32,8 @@ var common = {
                 loader: "file?name=[name].[ext]"
             },
             {
-                test: /\.css$/,
-                loaders: ['style', 'css']
-            },
-            {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
+                loader: 'style!css!sass'
             }
         ]
     },
