@@ -2,7 +2,6 @@ var webpack = require('webpack')
 var path = require('path');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var merge = require('webpack-merge');
-var pkg = require('./package.json');
 
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
@@ -59,7 +58,6 @@ if(TARGET === 'start' || !TARGET) {
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoErrorsPlugin(),
             new OpenBrowserPlugin({ url: 'http://localhost:3000' })
         ]
     });
@@ -67,13 +65,7 @@ if(TARGET === 'start' || !TARGET) {
 
 if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
     module.exports = merge(common, {
-        entry: {
-            vendor: Object.keys(pkg.dependencies)
-        },
-        devtool: 'source-map',
         plugins: [
-            new webpack.optimize.OccurenceOrderPlugin(),
-            new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.app.js'),
             new webpack.DefinePlugin({
                 // This affects react lib size
                 'process.env.NODE_ENV': JSON.stringify('production')
