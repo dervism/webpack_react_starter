@@ -1,6 +1,8 @@
 var webpack = require('webpack')
 var path = require('path');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var merge = require('webpack-merge');
 
 var ROOT_PATH = path.resolve(__dirname);
@@ -13,12 +15,11 @@ process.env.BABEL_ENV = TARGET;
 var common = {
     context: APP_PATH,
     entry: {
-        javascript: "./scripts/app.js",
-        html: "./pages/index.html"
+        javascript: "./scripts/app.js"
     },
     output: {
         path: BUILD_PATH,
-        filename: 'app.js'
+        filename: '[name].[hash].js'
     },
     module: {
         loaders: [
@@ -33,7 +34,7 @@ var common = {
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass'
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
             }
         ]
     },
@@ -74,6 +75,12 @@ if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
                 compress: {
                     warnings: false
                 }
+            }),
+            new ExtractTextPlugin("styles.[contenthash].css"),
+            new HtmlWebpackPlugin({
+                title: 'My App',
+                inject: 'body',
+                template: "./app/pages/index.html",
             })
         ]
     });
