@@ -80,7 +80,7 @@ if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
             new HtmlWebpackPlugin({
                 title: 'My App',
                 inject: 'body',
-                template: "./app/pages/index.html",
+                template: "./app/pages/index.html"
             })
         ]
     });
