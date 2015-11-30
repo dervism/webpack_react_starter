@@ -61,11 +61,15 @@ if(TARGET === 'start' || !TARGET) {
 
 if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
     module.exports = merge(common, {
+        entry: {
+            vendors: ['react']
+        },
         plugins: [
             new webpack.DefinePlugin({
                 // This affects react lib size
                 'process.env.NODE_ENV': JSON.stringify('production')
             }),
+            new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
                     warnings: false
