@@ -14,9 +14,7 @@ process.env.BABEL_ENV = TARGET;
 
 var common = {
     context: APP_PATH,
-    entry: {
-        javascript: "./scripts/app.js"
-    },
+    entry: ['webpack/hot/dev-server', "./scripts/app.js"],
     output: {
         path: BUILD_PATH,
         filename: '[name].[hash].js'
@@ -55,6 +53,13 @@ if(TARGET === 'start' || !TARGET) {
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
+            new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+            new ExtractTextPlugin("styles.[contenthash].css"),
+            new HtmlWebpackPlugin({
+                title: 'My App',
+                inject: 'body',
+                template: "./app/pages/index.html"
+            }),
             new OpenBrowserPlugin({ url: 'http://localhost:3000' })
         ]
     });
