@@ -14,7 +14,10 @@ process.env.BABEL_ENV = TARGET;
 
 var common = {
     context: APP_PATH,
-    entry: ['webpack/hot/dev-server', "./scripts/app.js"],
+    entry: {
+        app: ["./scripts/app.js"],
+        vendors: ['react']
+    },
     output: {
         path: BUILD_PATH,
         filename: '[name].[hash].js'
@@ -36,6 +39,15 @@ var common = {
             }
         ]
     },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new ExtractTextPlugin("styles.[contenthash].css"),
+        new HtmlWebpackPlugin({
+            title: 'My App',
+            inject: 'body',
+            template: "./app/pages/index.html"
+        })
+    ],
     resolve: {
         extensions: ['','.js','.jsx']
     }
@@ -53,13 +65,6 @@ if(TARGET === 'start' || !TARGET) {
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-            new ExtractTextPlugin("styles.[contenthash].css"),
-            new HtmlWebpackPlugin({
-                title: 'My App',
-                inject: 'body',
-                template: "./app/pages/index.html"
-            }),
             new OpenBrowserPlugin({ url: 'http://localhost:3000' })
         ]
     });
@@ -67,25 +72,15 @@ if(TARGET === 'start' || !TARGET) {
 
 if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
     module.exports = merge(common, {
-        entry: {
-            vendors: ['react']
-        },
         plugins: [
             new webpack.DefinePlugin({
                 // This affects react lib size
                 'process.env.NODE_ENV': JSON.stringify('production')
             }),
-            new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
                     warnings: false
                 }
-            }),
-            new ExtractTextPlugin("styles.[contenthash].css"),
-            new HtmlWebpackPlugin({
-                title: 'My App',
-                inject: 'body',
-                template: "./app/pages/index.html"
             })
         ]
     });
