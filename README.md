@@ -9,7 +9,7 @@ I made my own starter project as I did'nt any simple ones. Many of the existing 
 
 - npm start / npm run start: Start the application in development mode.
 - npm run build: Create a minified production build.
-- npm run deploy: Publish a production copy to your GitHub Pages (if you have one)
+- npm run deploy: Publish a production copy to your GitHub Pages (if you have a repository)
 
 **What I put together:**
 
