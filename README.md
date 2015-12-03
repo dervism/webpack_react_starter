@@ -1,7 +1,7 @@
 # Webpack React Starter
 An extremely lightweight starter project. The app contains only one page with the "Hello, world" text.
 
-I made my own starter project as I did'nt find any which are simple. Many of the existing ones either contains to much or they use Webpack in a too complex manner that makes learning difficult.
+I made my own starter project as I did'nt any simple ones. Many of the existing projects out there either contains to much or they use Webpack in a too complex manner that makes learning difficult.
 
 **Demo:** http://dervism.github.io/webpack_react_starter/
 
