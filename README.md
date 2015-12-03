@@ -1,7 +1,7 @@
 # Webpack React Starter
 An extremely lightweight starter project. The app contains only one page with the "Hello, world" text.
 
-I made my own starter project as I did'nt any simple ones. Many of the existing projects out there either contains to much or they use Webpack in a too complex manner that makes learning difficult.
+I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains to much or they use Webpack in a too complex manner that makes learning difficult.
 
 **Demo:** http://dervism.github.io/webpack_react_starter/
 
@@ -36,6 +36,9 @@ other config necessary for development.
 
 _build_ is where you put production config. Here you will find things like uglify, minification and
 other optimizations necessary for production.
+
+To enable browser caching, the build will apply a hash key to the output file. This will save bandwidth for your mobile
+users, as the browser only reloads the changed files (those with different hash keys).
 
 **Two online books that inspired this project:** (recommended reading)
 - http://survivejs.com/webpack_react/introduction/
