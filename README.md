@@ -21,7 +21,7 @@ I made my own starter project as I did'nt find any which are simple. Many of the
 
 **Webpack:**
 
-The configuration is split in to three parts:
+The configuration is split into three parts:
 
 - common
 - start
@@ -36,3 +36,7 @@ other config necessary for development.
 
 _build_ is where you put production config. Here you will find things like uglify, minification and
 other optimizations necessary for production.
+
+**Two online books that inspired this project:** (recommended reading)
+- http://survivejs.com/webpack_react/introduction/
+- https://christianalfoni.github.io/react-webpack-cookbook/index.html
