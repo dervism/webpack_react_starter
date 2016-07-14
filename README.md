@@ -32,7 +32,7 @@ _common_ is where you put all config common to both development and producation.
 When you run _npm run start_ or _npm run build_, Webpack will merge common configuration
 with the specified target config (start or build).
 
-_start_ is the development config. This is where you put the webpack-dev-server, hot reload and
+_dev_ is the development config. This is where you put the webpack-dev-server, hot reload and
 other config necessary for development.
 
 _build_ is where you put production config. Here you will find things like uglify, minification and
