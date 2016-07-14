@@ -62,7 +62,7 @@ var common = {
     }
 };
 
-if(TARGET === 'start' || !TARGET) {
+if(TARGET === 'dev' || TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
         entry: {
             app: [

@@ -1,13 +1,13 @@
 # Webpack React Starter
 An extremely lightweight starter project. The app contains only one page with the "Hello, world" text.
 
-I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains to much or they use Webpack in a too complex manner that makes learning difficult. Another issue I often encounter is the use of deprecated libraries - such as the many flavours of (*-react-transform)[https://github.com/gaearon/babel-plugin-react-transform] packages.
+I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains to much or they use Webpack in a too complex manner that makes learning difficult. Another issue I often encounter is the use of deprecated libraries - such as the many flavours of [*-react-transform](https://github.com/gaearon/babel-plugin-react-transform) packages.
 
 **Demo:** http://dervism.github.io/webpack_react_starter/
 
 **How to use:**
 
-- npm start / npm run start: Start the application in development mode.
+- npm start / npm run dev: Start the application in development mode.
 - npm run build: Create a minified production build.
 - npm run deploy: Publish a production copy to your GitHub Pages (if you have a repository)
 
@@ -25,8 +25,8 @@ I made my own starter project as I did'nt find any simple ones. Many of the exis
 The configuration is split into three parts:
 
 - common
-- start
-- build/stat/deploy
+- dev
+- build
 
 _common_ is where you put all config common to both development and producation.
 When you run _npm run start_ or _npm run build_, Webpack will merge common configuration

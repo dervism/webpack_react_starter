@@ -10,7 +10,8 @@
     "deploy": "node ./lib/deploy.js",
     "stats": "webpack --profile --json > stats.json",
     "build": "npm run clean && webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "dev": "npm start"
   },
   "author": "Dervis M",
   "license": "ISC",
