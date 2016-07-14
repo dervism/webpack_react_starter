@@ -41,6 +41,6 @@ other optimizations necessary for production.
 To enable browser caching, the build will apply a hash key to the output file. This will save bandwidth for your mobile
 users, as the browser only reloads the changed files (those with different hash keys).
 
-**Two online books that inspired this project:** (recommended reading, however be aware of detracted libraries such as HMR)
+**Two online books that inspired this project:** (recommended reading, however be aware of deprecated libraries such as HMR)
 - http://survivejs.com/webpack_react/introduction/
 - https://christianalfoni.github.io/react-webpack-cookbook/index.html
