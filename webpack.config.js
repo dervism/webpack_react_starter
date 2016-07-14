@@ -1,8 +1,8 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
 var path = require('path');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var merge = require('webpack-merge');
 
 var ROOT_PATH = path.resolve(__dirname);
@@ -13,9 +13,12 @@ const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
 
 var common = {
-    context: APP_PATH,
     entry: {
-        app: ["./scripts/app.js"],
+        app: [
+          'webpack-dev-server/client?http://0.0.0.0:3000',
+          'webpack/hot/only-dev-server',
+          "./app/scripts/app"
+        ],
         vendors: ['react']
     },
     output: {
@@ -25,13 +28,9 @@ var common = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ["babel"]
-            },
-            {
-                test: /\.html$/,
-                loader: "file?name=[name].[ext]"
+                loaders: ['react-hot', 'babel']
             },
             {
                 test: /\.scss$/,
