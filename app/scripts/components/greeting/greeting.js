@@ -21,13 +21,13 @@ export default class Greeting extends React.Component {
                 <p>
                     Small inlined logo: <br/>
                     {imgSmall} <br/>
-                    <img src="{imgSmallSrc}" alt=""/>
+                    <img src={imgSmallSrc} alt=""/>
                 </p>
 
                 <p>
                     Big logo inside the resources folder <br/>
                     {imgBig} <br/>
-                    <img src="{imgBigSrc}" alt=""/>
+                    <img src={imgBigSrc} alt=""/>
                 </p>
             </div>
         );
