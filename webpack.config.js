@@ -15,8 +15,6 @@ process.env.BABEL_ENV = TARGET;
 var common = {
     entry: {
         app: [
-          'webpack-dev-server/client?http://0.0.0.0:3000',
-          'webpack/hot/only-dev-server',
           "./app/scripts/app"
         ],
         vendors: ['react']
@@ -31,6 +29,18 @@ var common = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'babel']
+            },
+            {
+                test: /\.(png|gif|jpg|svg)$/,
+                loaders: ['url?limit=25000&name=resources/images/[name].[hash:10].[ext]']
+            },
+            {
+                test: /\.(woff|ttf|otf|eot)$/,
+                loaders: ['file?name=resources/fonts/[name].[hash:10].[ext]']
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract("css")
             },
             {
                 test: /\.scss$/,
@@ -54,6 +64,12 @@ var common = {
 
 if(TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
+        entry: {
+            app: [
+                'webpack-dev-server/client?http://0.0.0.0:3000',
+                'webpack/hot/only-dev-server'
+            ]
+        },
         devtool: 'eval-source-map',
         devServer: {
             historyApiFallback: true,
@@ -73,7 +89,6 @@ if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
     module.exports = merge(common, {
         plugins: [
             new webpack.DefinePlugin({
-                // This affects react lib size
                 'process.env.NODE_ENV': JSON.stringify('production')
             }),
             new webpack.optimize.UglifyJsPlugin({
