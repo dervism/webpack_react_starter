@@ -18,8 +18,7 @@ const common = {
     },
     output: {
         path: BUILD_PATH,
-        filename: '[name].[hash].js',
-        publicPath: '/'
+        filename: '[name].[hash].js'
     },
     module: {
         loaders: [
