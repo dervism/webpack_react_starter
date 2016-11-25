@@ -1,5 +1,6 @@
 import React from 'react';
-import './greeting.scss'
+import './greeting.scss';
+const config = require('appconfig');
 
 export default class Greeting extends React.Component {
     constructor(props) {
@@ -17,6 +18,10 @@ export default class Greeting extends React.Component {
         return (
             <div className="greeting">
                 <h1>Hello, {this.props.name}!</h1>
+
+                <p>
+                    Config example: config.HELLO_WORLD: {config.HELLO_WORLD}
+                </p>
 
                 <p>
                     Small inlined logo: <br/>

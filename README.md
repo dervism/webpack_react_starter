@@ -14,11 +14,11 @@ I made my own starter project as I did'nt find any simple ones. Many of the exis
 **What I put together:**
 
 - Webpack
-- Babel 6.10
-- React 15.2
+- Babel 6.x
+- React 15.x
 - SASS
 - ESLint
-- React Hot Loader (for HMR)
+- React Hot Loader 3
 
 **Webpack:**
 
@@ -41,6 +41,30 @@ other optimizations necessary for production.
 To enable browser caching, the build will apply a hash key to the output file. This will save bandwidth for your mobile
 users, as the browser only reloads the changed files (those with different hash keys).
 
+**App configuration**
+
+Webpack is setup to automatically look for the `CONFIG` environment variable. You can use it to point it to any of the available
+folder names in the `configuration` folder. To run the application with different configs, simply set the environment value together with
+npm run command:
+
+`CONFIG=devlocal npm start`
+
+This will configure your application to use the *devlocal* config. If you dont specify CONFIG, Webpack will just use the *default*
+configuration:
+
+`default`: Put default values in this file.
+
+`devlocal`: Example of how to extend the default config.
+
+You can now use this configuration in any module, just by importing the alias set by Webpack:
+
+`const config = require('appconfig');`
+
 **Two online books that inspired this project:** (recommended reading, however be aware of deprecated libraries such as HMR)
 - http://survivejs.com/webpack_react/introduction/
 - https://christianalfoni.github.io/react-webpack-cookbook/index.html
+
+**React Hot Loader 3**
+
+See the Webpack 2.1 documentation for more info:
+https://webpack.js.org/guides/hmr-react/

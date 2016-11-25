@@ -14,29 +14,27 @@ process.env.BABEL_ENV = TARGET;
 
 var common = {
     entry: {
-        app: [
-          "./app/scripts/app"
-        ],
         vendors: ['react']
     },
     output: {
         path: BUILD_PATH,
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        publicPath: '/'
     },
     module: {
         loaders: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot', 'babel']
+                loaders: ['babel-loader']
             },
             {
                 test: /\.(png|gif|jpg|svg)$/,
-                loaders: ['url?limit=25000&name=resources/images/[name].[hash:10].[ext]']
+                loaders: ['url-loader?limit=25000&name=resources/images/[name].[hash:10].[ext]']
             },
             {
                 test: /\.(woff|ttf|otf|eot)$/,
-                loaders: ['file?name=resources/fonts/[name].[hash:10].[ext]']
+                loaders: ['file-loader?name=resources/fonts/[name].[hash:10].[ext]']
             },
             {
                 test: /\.css$/,
@@ -55,10 +53,17 @@ var common = {
             title: 'My App',
             inject: 'body',
             template: "./app/pages/index.html"
-        })
+        }),
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify(require("./package.json").version),
+        }),
+        new webpack.NoErrorsPlugin(),
     ],
     resolve: {
-        extensions: ['','.js','.jsx']
+        extensions: ['','.js','.jsx'],
+        alias: {
+            appconfig: path.join(__dirname, 'configuration', process.env.CONFIG || 'default')
+        }
     }
 };
 
@@ -66,20 +71,24 @@ if(TARGET === 'dev' || TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
         entry: {
             app: [
+                'react-hot-loader/patch',
                 'webpack-dev-server/client?http://0.0.0.0:3000',
-                'webpack/hot/only-dev-server'
+                'webpack/hot/only-dev-server',
+                "./app"
             ]
         },
-        devtool: 'eval-source-map',
+        devtool: 'inline-source-map',
         devServer: {
             historyApiFallback: true,
-            hot: true,
             inline: true,
             progress: true,
-            port: 3000
+            port: 3000,
+            contentBase: BUILD_PATH,
+            publicPath: '/'
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
+            new webpack.NamedModulesPlugin(),
             new OpenBrowserPlugin({ url: 'http://localhost:3000' })
         ]
     });
@@ -87,6 +96,11 @@ if(TARGET === 'dev' || TARGET === 'start' || !TARGET) {
 
 if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
     module.exports = merge(common, {
+        entry: {
+            app: [
+                "./app"
+            ]
+        },
         plugins: [
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': JSON.stringify('production')
