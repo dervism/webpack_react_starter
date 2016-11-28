@@ -1,7 +1,10 @@
 # Webpack React Starter
 An extremely lightweight starter project. The app contains only one page with the "Hello, world" text.
 
-I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains to much or they use Webpack in a too complex manner that makes learning difficult. Another issue I often encounter is the use of deprecated libraries - such as the many flavours of [*-react-transform](https://github.com/gaearon/babel-plugin-react-transform) packages.
+I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains 
+to much or they use Webpack in a too complex manner that makes learning difficult. Another issue I often encounter is the 
+use of deprecated libraries - such as the many flavours of [*-react-transform](https://github.com/gaearon/babel-plugin-react-transform) 
+packages.
 
 **Demo:** http://dervism.github.io/webpack_react_starter/
 
@@ -11,7 +14,7 @@ I made my own starter project as I did'nt find any simple ones. Many of the exis
 - npm run build: Create a minified production build.
 - npm run deploy: Publish a production copy to your GitHub Pages (if you have a repository)
 
-**What I put together:**
+**What is inside:**
 
 - Webpack
 - Babel 6.x
@@ -20,7 +23,12 @@ I made my own starter project as I did'nt find any simple ones. Many of the exis
 - ESLint
 - React Hot Loader 3
 
-**Webpack:**
+Also included in this starter:
+
+- App-configuration
+- Styling with CSS-modules
+
+**Webpack setup:**
 
 The configuration is split into three parts:
 
@@ -60,11 +68,34 @@ You can now use this configuration in any module, just by importing the alias se
 
 `const config = require('appconfig');`
 
-**Two online books that inspired this project:** (recommended reading, however be aware of deprecated libraries such as HMR)
-- http://survivejs.com/webpack_react/introduction/
-- https://christianalfoni.github.io/react-webpack-cookbook/index.html
+**Styling with CSS-modules**
+
+You can use both global styling and component local styling. All global CSS/SASS styling should be added to the Main-component with
+a simple `require`:
+
+`require('./style.css');`
+
+The same thing would apply to, say Bootstrap:
+
+`require('bootstrap/dist/css/bootstrap.css');` (given that Bootstrap with is added)
+
+The setup has *CSS-modules* mode enabled for SASS files. You can style a component with local class names that get encoded, so they
+don't interfere with other components. You import the style and use it directly:
+
+`import styles from './greeting.scss'`
+
+Then in your code:
+
+`<div className={styles.greeting}>`
+
+This enables the class names to be encoded from `.greeting h1` to `._1KouF5dv9niOE7VPtfEJrS h1` when you build the project. 
+See the Greeting-component demonstrating CSS-modules.
 
 **React Hot Loader 3**
 
 See the Webpack 2.1 documentation for more info:
 https://webpack.js.org/guides/hmr-react/
+
+**Two online books that inspired this project:** (recommended reading, however be aware of deprecated libraries such as HMR)
+- http://survivejs.com/webpack_react/introduction/
+- https://christianalfoni.github.io/react-webpack-cookbook/index.html

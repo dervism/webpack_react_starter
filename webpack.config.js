@@ -32,16 +32,16 @@ const common = {
                 loaders: ['url-loader?limit=25000&name=resources/images/[name].[hash:10].[ext]']
             },
             {
-                test: /\.(woff|ttf|otf|eot)$/,
+                test: /\.(woff|woof2|ttf|otf|eot)$/,
                 loaders: ['file-loader?name=resources/fonts/[name].[hash:10].[ext]']
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("css")
+                loader: ExtractTextPlugin.extract("css-loader")
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules', 'sass-loader')
             }
         ]
     },

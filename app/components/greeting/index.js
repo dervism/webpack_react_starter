@@ -1,5 +1,5 @@
 import React from 'react';
-import './greeting.scss';
+import styles from './greeting.scss'
 const config = require('appconfig');
 
 export default class Greeting extends React.Component {
@@ -16,7 +16,7 @@ export default class Greeting extends React.Component {
         var imgBigSrc = require("./react-logo-big.png");
 
         return (
-            <div className="greeting">
+            <div className={styles.greeting}>
                 <h1>Hello, {this.props.name}!</h1>
 
                 <p>
