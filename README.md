@@ -1,9 +1,9 @@
 # Webpack React Starter
 An extremely lightweight starter project. The app contains only one page with the "Hello, world" text.
 
-I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains 
-to much or they use Webpack in a too complex manner that makes learning difficult. Another issue I often encounter is the 
-use of deprecated libraries - such as the many flavours of [*-react-transform](https://github.com/gaearon/babel-plugin-react-transform) 
+I made my own starter project as I did'nt find any simple ones. Many of the existing projects out there either contains
+to much or they use Webpack in a too complex manner that makes learning difficult. Another issue I often encounter is the
+use of deprecated libraries - such as the many flavours of [*-react-transform](https://github.com/gaearon/babel-plugin-react-transform)
 packages.
 
 **Demo:** http://dervism.github.io/webpack_react_starter/
@@ -70,8 +70,7 @@ You can now use this configuration in any module, just by importing the alias se
 
 **Styling with CSS-modules**
 
-You can use both global styling and component local styling. All global CSS/SASS styling should be added to the Main-component with
-a simple `require`:
+You can use both global styling and component local styling. All global CSS/SASS styling should be added to the Main-component with a simple `require`:
 
 `require('./style.css');`
 
@@ -88,7 +87,7 @@ Then in your code:
 
 `<div className={styles.greeting}>`
 
-This enables the class names to be encoded from `.greeting h1` to `._1KouF5dv9niOE7VPtfEJrS h1` when you build the project. 
+This enables the class names to be encoded from `.greeting h1` to `._1KouF5dv9niOE7VPtfEJrS h1` when you build the project.
 See the Greeting-component demonstrating CSS-modules.
 
 **React Hot Loader 3**

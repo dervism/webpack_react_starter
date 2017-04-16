@@ -16,7 +16,7 @@ export default class Greeting extends React.Component {
         var imgBigSrc = require("./react-logo-big.png");
 
         return (
-            <div className={styles.greeting}>
+            <div className="greeting">
                 <h1>Hello, {this.props.name}!</h1>
 
                 <p>

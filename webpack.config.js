@@ -25,28 +25,40 @@ const common = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader']
+                use: [{
+                   loader: 'babel-loader'
+                }]
             },
             {
                 test: /\.(png|gif|jpg|svg)$/,
-                loaders: ['url-loader?limit=25000&name=resources/images/[name].[hash:10].[ext]']
+                use: [{
+                   loader: 'url-loader?limit=25000&name=resources/images/[name].[hash:10].[ext]'
+                }]
             },
             {
                 test: /\.(woff|woof2|ttf|otf|eot)$/,
-                loaders: ['file-loader?name=resources/fonts/[name].[hash:10].[ext]']
+                use: [{
+                   loader: 'file-loader?name=resources/fonts/[name].[hash:10].[ext]'
+                }]
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("css-loader")
+                use: ExtractTextPlugin.extract({
+                  fallback: "style-loader",
+                  use: "css-loader"
+                })
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules', 'sass-loader')
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  use: ['css-loader', 'sass-loader']
+                })
             }
         ]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'vendors.js'}),
         new ExtractTextPlugin("styles.[contenthash].css"),
         new HtmlWebpackPlugin({
             title: 'My App',
@@ -56,10 +68,10 @@ const common = {
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(require("./package.json").version),
         }),
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
     ],
     resolve: {
-        extensions: ['','.js','.jsx'],
+        extensions: ['.js','.jsx'],
         alias: {
             appconfig: path.join(__dirname, 'configuration', process.env.CONFIG || 'default')
         }
