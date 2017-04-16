@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './greeting.scss'
 const config = require('appconfig');
 
@@ -37,4 +38,8 @@ export default class Greeting extends React.Component {
             </div>
         );
     }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string.isRequired
 }

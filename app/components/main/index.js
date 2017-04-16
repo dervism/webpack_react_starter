@@ -8,14 +8,12 @@ export default class Main extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <h1>React and Webpack Template!</h1>
-                <Greeting name="World" />
+                <Greeting name="World world" />
                 <h5>Version: {VERSION}</h5>
             </div>
-
         );
     }
 }

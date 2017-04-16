@@ -32,13 +32,20 @@ const common = {
             {
                 test: /\.(png|gif|jpg|svg)$/,
                 use: [{
-                   loader: 'url-loader?limit=25000&name=resources/images/[name].[hash:10].[ext]'
+                   loader: 'url-loader',
+                   options: {
+                     limit: '25000',
+                     name: 'resources/images/[name].[hash:10].[ext]'
+                   }
                 }]
             },
             {
                 test: /\.(woff|woof2|ttf|otf|eot)$/,
                 use: [{
-                   loader: 'file-loader?name=resources/fonts/[name].[hash:10].[ext]'
+                   loader: 'file-loader',
+                   options: {
+                     name: 'resources/fonts/[name].[hash:10].[ext]'
+                   }
                 }]
             },
             {
@@ -92,7 +99,7 @@ if(TARGET === 'dev' || TARGET === 'start' || !TARGET) {
         devServer: {
             historyApiFallback: true,
             inline: true,
-            progress: true,
+            hot: true,
             port: 3000,
             contentBase: BUILD_PATH,
             publicPath: '/'
