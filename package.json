@@ -36,7 +36,6 @@
     "http-server": "0.9.0",
     "lodash": "4.17.4",
     "node-sass": "4.5.2",
-    "open-browser-webpack-plugin": "0.0.5",
     "react-hot-loader": "next",
     "rimraf": "2.6.1",
     "sass-loader": "6.0.3",
