@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
@@ -107,7 +106,6 @@ if(TARGET === 'dev' || TARGET === 'start' || !TARGET) {
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NamedModulesPlugin(),
-            new OpenBrowserPlugin({ url: 'http://localhost:3000' })
         ]
     });
 }
