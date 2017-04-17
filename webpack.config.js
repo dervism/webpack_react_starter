@@ -8,6 +8,7 @@ const merge = require('webpack-merge');
 const ROOT_PATH = path.resolve(__dirname);
 const APP_PATH = path.resolve(ROOT_PATH, 'app');
 const BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
+const CONTEXTPATH = process.env.CONTEXTPATH || '/';
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -18,7 +19,8 @@ const common = {
     },
     output: {
         path: BUILD_PATH,
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        publicPath: CONTEXTPATH,
     },
     module: {
         loaders: [
@@ -74,6 +76,7 @@ const common = {
         }),
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(require("./package.json").version),
+            CONTEXTPATH: JSON.stringify(CONTEXTPATH)
         }),
         new webpack.NoEmitOnErrorsPlugin(),
     ],
@@ -89,25 +92,28 @@ if(TARGET === 'dev' || TARGET === 'start' || !TARGET) {
     module.exports = merge(common, {
         entry: {
             app: [
+                'babel-polyfill',
                 'react-hot-loader/patch',
                 'webpack-dev-server/client?http://0.0.0.0:3000',
                 'webpack/hot/only-dev-server',
-                "./app"
+                './app'
             ]
         },
         devtool: 'inline-source-map',
         devServer: {
-            historyApiFallback: true,
+            historyApiFallback: {
+               index: CONTEXTPATH,
+               disableDotRule: true
+            },
             inline: true,
             hot: true,
             port: 3000,
             contentBase: BUILD_PATH,
-            publicPath: '/'
+            publicPath: CONTEXTPATH
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.NamedModulesPlugin(),
-            new OpenBrowserPlugin({ url: 'http://localhost:3000' })
+            new webpack.NamedModulesPlugin()
         ]
     });
 }
@@ -116,7 +122,8 @@ if(TARGET === 'build' || TARGET === 'stats' || TARGET === 'deploy') {
     module.exports = merge(common, {
         entry: {
             app: [
-                "./app"
+                'babel-polyfill',
+                './app'
             ]
         },
         plugins: [
