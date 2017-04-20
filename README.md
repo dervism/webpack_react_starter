@@ -68,7 +68,7 @@ You can now use this configuration in any module, just by importing the alias se
 
 `const config = require('appconfig');`
 
-**Styling with CSS-modules**
+**Styling with CSS**
 
 You can use both global styling and component local styling. All global CSS/SASS styling should be added to the Main-component with a simple `require`:
 
@@ -77,24 +77,3 @@ You can use both global styling and component local styling. All global CSS/SASS
 The same thing would apply to, say Bootstrap:
 
 `require('bootstrap/dist/css/bootstrap.css');` (given that Bootstrap with is added)
-
-The setup has *CSS-modules* mode enabled for SASS files. You can style a component with local class names that get encoded, so they
-don't interfere with other components. You import the style and use it directly:
-
-`import styles from './greeting.scss'`
-
-Then in your code:
-
-`<div className={styles.greeting}>`
-
-This enables the class names to be encoded from `.greeting h1` to `._1KouF5dv9niOE7VPtfEJrS h1` when you build the project.
-See the Greeting-component demonstrating CSS-modules.
-
-**React Hot Loader 3**
-
-See the Webpack 2.1 documentation for more info:
-https://webpack.js.org/guides/hmr-react/
-
-**Two online books that inspired this project:** (recommended reading, however be aware of deprecated libraries such as HMR)
-- http://survivejs.com/webpack_react/introduction/
-- https://christianalfoni.github.io/react-webpack-cookbook/index.html
